@@ -1,5 +1,5 @@
-Using this app you can add new contact list , search the list and 
-also edit the cotact details.
+Using this app you can add new contact, search the list and 
+also edit the contact details.
 
 This app is developed using MAEN STACK.
 
