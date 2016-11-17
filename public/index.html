@@ -1,0 +1,46 @@
+<!-- index.html -->
+<!doctype html>
+
+<!-- ASSIGN OUR ANGULAR MODULE -->
+<html ng-app="contactlistApp">
+<head>
+    <!-- META -->
+    <!-- Optimize mobile viewport -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>MEAN Contact List App</title>
+
+    <!-- Load Bootstrap and Todo App sytlesheets -->
+    <link rel="stylesheet" href="./styles/bootstrap.css">
+    <link rel="stylesheet" href="./styles/contactStyles.css">
+
+    <!-- Load Angular -->
+    <script src="./scripts/ng/angular.js"></script>
+    <script src="./scripts/ng/angular-route.js"></script>
+    
+    <!-- Load Todo App scripts -->
+    <script src="./scripts/app.js"></script>
+    <!--<script src="./scripts/controllers/headerController.js"></script>-->
+    <script src="./scripts/controllers/mainController.js"></script>
+    <!--<script src="./scripts/controllers/aboutController.js"></script>-->
+    <script src="./scripts/services/todoService.js"></script>
+    <script src="./scripts/services/logService.js"></script>
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- HEADER -->
+        <div class="jumbotron text-center">
+            <h1>Contact List App</h1>
+        </div>
+
+    </div>
+
+    <div ng-view></div>
+
+</body>
+</html>

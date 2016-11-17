@@ -1,0 +1,186 @@
+<!-- THE DEFAULT VIEW OF TODO APP -->
+<div class="container">
+    <!-- TODO SEARCH -->
+    <div class="row">
+        <div class="col-md-4 col-sm-4">
+            <div id="todo-form" class="row add-space-to-bottom">
+            <div class="col-sm-8 col-sm-offset-2 text-center">
+            <form name="todoForm" ng-submit="createTodo()" novalidate>
+                <div class="form-group"
+                        ng-class="{ 'has-error': todoForm.todoText.$error.required && !todoForm.todoText.$pristine }">
+                    <input type="text" 
+                            id="name"
+                            name="name"
+                            class="form-control input-lg text-center"
+                            placeholder="Enter Name" 
+                            ng-model="formData.name"
+                            required>
+                    <span ng-show="todoForm.todoText.$error.required && !todoForm.todoText.$pristine" 
+                            class="help-block">
+                        Todo text is required.
+                    </span><br />
+                    <input type="number" 
+                            id="number"
+                            name="number"
+                            class="form-control input-lg text-center"
+                            placeholder="Enter Number" 
+                            ng-model="formData.number"
+                            required>
+                    <span ng-show="todoForm.todoText.$error.required && !todoForm.todoText.$pristine" 
+                            class="help-block">
+                        Todo text is required.
+                    </span><br />
+                    <input type="text" 
+                            id="email"
+                            name="email"
+                            class="form-control input-lg text-center"
+                            placeholder="Enter email" 
+                            ng-model="formData.email"
+                            required>
+                    <span ng-show="todoForm.todoText.$error.required && !todoForm.todoText.$pristine" 
+                            class="help-block">
+                        Todo text is required.
+                    </span><br />
+                    <input type="text" 
+                            id="address"
+                            name="address"
+                            class="form-control input-lg text-center"
+                            placeholder="Enter address" 
+                            ng-model="formData.address"
+                            required>
+                    <span ng-show="todoForm.todoText.$error.required && !todoForm.todoText.$pristine" 
+                            class="help-block">
+                        Todo text is required.
+                    </span><br />
+                    <input type="text" 
+                            id="relation"
+                            name="relation"
+                            class="form-control input-lg text-center"
+                            placeholder="Enter relation" 
+                            ng-model="formData.relation"
+                            required>
+                    <span ng-show="todoForm.todoText.$error.required && !todoForm.todoText.$pristine" 
+                            class="help-block">
+                        Todo text is required.
+                    </span>
+                </div>
+                <button type="submit" 
+                        class="btn btn-primary btn-lg" 
+                        ng-disabled="todoForm.$invalid">
+                    Add
+                </button>
+            </form>
+            </div>
+        </div>
+        </div>
+        <div class="col-md-4 col-sm-4">
+            <input type="search" class="form-control input-sm" 
+                placeholder="Search todos" ng-model="searchText"> 
+            <div id="todo-list" class="row add-space-to-bottom">
+                <div class="col-sm-4 col-sm-offset-4">
+                    <div class="checkbox" ng-repeat="todo in todos | filter: searchText">
+                        <label><a ng-click="selectTodo(todo._id)">{{ todo.name }}</a></label>
+<!--
+                    <label>
+                    <input type="checkbox" 
+                            ng-click="deleteTodo(todo._id)"> {{ todo.name }}
+                    </label>
+-->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-4" ng-if="todos.length>0">
+            <div class="row"><div class="col-md-12"><label style="float:left;">Name: </label>&nbsp;
+                <input type="text" ng-change="updateCurTodo(this)" ng-model="curTodo.name" ng-disabled="inactive" />
+            </div></div><br />
+            <div class="row"><div class="col-md-12"><label style="float:left;">Number: </label>&nbsp;
+                <input type="text" ng-change="updateCurTodo(this)" ng-model="curTodo.number" ng-disabled="inactive" />
+<!--
+                <input type="text" ng-if="editFlag" ng-change="updateCurTodo(this)" ng-model="number" value={{curTodo.number}} />
+                <span ng-if="nonEditFlag">{{curTodo.number}}</span>
+-->
+            </div></div><br />
+            <div class="row"><div class="col-md-12"><label style="float:left;">Email: </label>&nbsp;
+                <input type="text" ng-change="updateCurTodo(this)" ng-model="curTodo.email" ng-disabled="inactive" />
+            </div></div><br />
+            <div class="row"><div class="col-md-12"><label style="float:left;">Address: </label>&nbsp;
+                <input type="text" ng-change="updateCurTodo(this)" ng-model="curTodo.address" ng-disabled="inactive" />
+            </div></div><br />
+            <div class="row"><div class="col-md-12"><label style="float:left;">Relation: </label>&nbsp;
+                <input type="text" ng-change="updateCurTodo(this)" ng-model="curTodo.relation" ng-disabled="inactive" />
+            </div></div><br />
+            <div class="row">
+                <div class="col-md-12">
+                    <button ng-if="nonEditFlag" ng-click="editTodo()">Edit</button>
+                    <button ng-if="editFlag" ng-click="updateTodo(curTodo._id,curTodo)">Update</button>
+                    <button ng-click="deleteTodo(curTodo._id)">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TODO LIST -->
+<!--
+    <div id="todo-list" class="row add-space-to-bottom">
+        <div class="col-sm-4 col-sm-offset-4">
+-->
+
+            <!-- LOOP OVER THE TODOS IN $scope.todos -->
+<!--
+            <div class="checkbox" ng-repeat="todo in todos | filter: searchText">
+                <label>
+                    <input type="checkbox" 
+                            ng-click="deleteTodo(todo._id)"> {{ todo.text }}
+                </label>
+            </div>
+
+        </div>
+    </div>
+-->
+
+    <!-- TODO COUNT -->
+<!--
+    <div class="row add-space-to-bottom">
+        <div class="col-sm-8 col-sm-offset-2 text-center">
+            <h4>Count: <span class="label label-info">{{ todos.length }}</span></h4>
+        </div>
+    </div>
+-->
+
+    <!-- FORM TO CREATE TODOS -->
+<!--
+    <div id="todo-form" class="row add-space-to-bottom">
+        <div class="col-sm-8 col-sm-offset-2 text-center">
+            <form name="todoForm" ng-submit="createTodo()" novalidate>
+                <div class="form-group"
+                        ng-class="{ 'has-error': todoForm.todoText.$error.required && !todoForm.todoText.$pristine }">
+-->
+                    <!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
+<!--
+                    <input type="text" 
+                            id="todoText"
+                            name="todoText"
+                            class="form-control input-lg text-center"
+                            placeholder="Enter todo task" 
+                            ng-model="formData.text"
+                            required>
+                    <span ng-show="todoForm.todoText.$error.required && !todoForm.todoText.$pristine" 
+                            class="help-block">
+                        Todo text is required.
+                    </span>
+                </div>
+-->
+
+                <!-- createToDo() WILL CREATE NEW TODOS -->
+<!--
+                <button type="submit" 
+                        class="btn btn-primary btn-lg" 
+                        ng-disabled="todoForm.$invalid">
+                    Add
+                </button>
+            </form>
+        </div>
+    </div>
+-->
+</div>
